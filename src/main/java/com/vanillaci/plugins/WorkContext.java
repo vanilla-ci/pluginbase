@@ -1,5 +1,6 @@
 package com.vanillaci.plugins;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -94,4 +95,12 @@ public interface WorkContext {
 	 * @since 0.0.1
 	 */
 	WorkState getState();
+
+	/**
+	 * @return An existing directory representing the working directory of the work.
+	 * Generally, any files created should be put in this directory.
+	 * Any commands run should use this directory as the working directory.
+	 * @since 0.0.1
+	 */
+	File getWorkingDirectory();
 }
