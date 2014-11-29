@@ -1,7 +1,6 @@
 package com.vanillaci.plugins;
 
 import java.io.*;
-import java.util.*;
 
 /**
  * @author Joel Johnson
@@ -10,14 +9,13 @@ public interface WorkContext {
 	String getWorkId();
 
 	/**
-	 * All the parameters provided globally, specifically to this work step, or provided by previous workSteps.
-	 * Any parameters added directly to this map will be discarded after the workstep and its interceptors are complete.
-	 * To add parameters for later workSteps, use the {@link #addParameter(String, String)} method.
-	 *
-	 * @return map of the parameters.
+	 * @return the value for the given parameter, if it exists. Otherwise returns null.
+	 * 			Parameters added through {@link #addParameter(String, String)} have precedence.
+	 * 			Parameters defined for the current WorkStep have next order of precedence.
+	 * 			Parameters defined for the Work have the lowest level of precedence.
 	 * @since 0.0.1
 	 */
-	Map<String, String> getParameters();
+	String getParameter(String parameterName);
 
 	/**
 	 * Adds the given parameter to the parameter map for current and future work steps.
@@ -91,10 +89,22 @@ public interface WorkContext {
 	int getTotalSteps();
 
 	/**
+	 * @return the current step number of the current state.
+	 * @since 0.0.1
+	 */
+	int getCurrentPostStep();
+
+	/**
+	 * @return the number of steps that will be executed in the current state.
+	 * @since 0.0.1
+	 */
+	int getTotalPostSteps();
+
+	/**
 	 * @return Where in the build process the work currently is.
 	 * @since 0.0.1
 	 */
-	WorkState getState();
+	WorkPhase getWorkPhase();
 
 	/**
 	 * @return An existing directory representing the working directory of the work.
