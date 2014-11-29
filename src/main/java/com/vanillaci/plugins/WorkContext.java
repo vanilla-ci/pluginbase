@@ -66,7 +66,7 @@ public interface WorkContext {
 	 * @return True if the work is set to terminate
 	 * @since 0.0.1
 	 */
-	boolean getTerminate();
+	boolean getTerminated();
 
 	/**
 	 * Sets the work to terminate, reglardless of the number of steps remaining.
@@ -74,7 +74,7 @@ public interface WorkContext {
 	 * @param terminate
 	 * @since 0.0.1
 	 */
-	void setTerminate(boolean terminate);
+	void setTerminated(boolean terminate);
 
 	/**
 	 * @return the current step number of the current state.
